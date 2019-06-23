@@ -23,14 +23,10 @@ export class TennisGame1 implements TennisGame {
     let score: string = '';
     let tempScore: number = 0;
     if (this.player1Score === this.player2Score) {
-      return this.drawScore(this.player1Score);
+      return this.drawScore();
     }
     else if (this.player1Score >= 4 || this.player2Score >= 4) {
-      const minusResult: number = this.player1Score - this.player2Score;
-      if (minusResult === 1) score = `Advantage ${this.player1Name}`;
-      else if (minusResult === -1) score = `Advantage ${this.player2Name}`;
-      else if (minusResult >= 2) score = `Win for ${this.player1Name}`;
-      else score = `Win for ${this.player2Name}`;
+      return this.advantageScore();
     }
     else {
       for (let i = 1; i < 3; i++) {
@@ -55,7 +51,19 @@ export class TennisGame1 implements TennisGame {
     return score;
   }
 
-  private drawScore(score: number): string {
+  private advantageScore() {
+    const difference = this.player1Score - this.player2Score;
+    if (difference === 1)
+      return `Advantage ${this.player1Name}`;
+    else if (difference === -1)
+      return `Advantage ${this.player2Name}`;
+    else if (difference >= 2)
+      return `Win for ${this.player1Name}`;
+    else
+      return `Win for ${this.player2Name}`;
+  }
+
+  private drawScore(): string {
     switch (this.player1Score) {
       case 0:
         return 'Love-All';
