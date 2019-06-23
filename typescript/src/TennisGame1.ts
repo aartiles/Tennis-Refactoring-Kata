@@ -46,19 +46,7 @@ export class TennisGame1 implements TennisGame {
   }
 
   private runningScore() {
-    let score: string = '';
-    let tempScore: number = 0;
-
-    for (let i = 1; i < 3; i++) {
-      if (i === 1)
-        tempScore = this.player1Score;
-      else {
-        score += '-';
-        tempScore = this.player2Score;
-      }
-      score += this.scoreToText(tempScore);
-    }
-    return score;
+    return `${this.scoreToText(this.player1Score)}-${this.scoreToText(this.player2Score)}`;
   }
 
   private scoreToText(score: number): string {
