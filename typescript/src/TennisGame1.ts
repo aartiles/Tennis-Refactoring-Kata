@@ -20,8 +20,6 @@ export class TennisGame1 implements TennisGame {
   }
 
   getScore(): string {
-    let score: string = '';
-    let tempScore: number = 0;
     if (this.player1Score === this.player2Score) {
       return this.drawScore();
     }
@@ -29,23 +27,34 @@ export class TennisGame1 implements TennisGame {
       return this.advantageScore();
     }
     else {
-      for (let i = 1; i < 3; i++) {
-        if (i === 1) tempScore = this.player1Score;
-        else { score += '-'; tempScore = this.player2Score; }
-        switch (tempScore) {
-          case 0:
-            score += 'Love';
-            break;
-          case 1:
-            score += 'Fifteen';
-            break;
-          case 2:
-            score += 'Thirty';
-            break;
-          case 3:
-            score += 'Forty';
-            break;
-        }
+      return this.runningScore();
+    }
+  }
+
+  private runningScore() {
+    let score: string = '';
+    let tempScore: number = 0;
+
+    for (let i = 1; i < 3; i++) {
+      if (i === 1)
+        tempScore = this.player1Score;
+      else {
+        score += '-';
+        tempScore = this.player2Score;
+      }
+      switch (tempScore) {
+        case 0:
+          score += 'Love';
+          break;
+        case 1:
+          score += 'Fifteen';
+          break;
+        case 2:
+          score += 'Thirty';
+          break;
+        case 3:
+          score += 'Forty';
+          break;
       }
     }
     return score;
