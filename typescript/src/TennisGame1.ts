@@ -26,15 +26,23 @@ export class TennisGame1 implements TennisGame {
   }
 
   getScore(): string {
-    if (this.player1Score === this.player2Score) {
+    if (this.isDraw()) {
       return this.drawScore();
     }
-    else if (this.player1Score >= 4 || this.player2Score >= 4) {
+    else if (this.isAdvantage()) {
       return this.advantageScore();
     }
     else {
       return this.runningScore();
     }
+  }
+
+  private isAdvantage(): boolean {
+    return this.player1Score >= 4 || this.player2Score >= 4;
+  }
+
+  private isDraw(): boolean {
+    return this.player1Score === this.player2Score;
   }
 
   private runningScore() {
