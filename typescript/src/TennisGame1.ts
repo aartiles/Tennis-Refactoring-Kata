@@ -1,5 +1,11 @@
 import { TennisGame } from './TennisGame';
 
+const SCORE_TO_TEXT = {
+  0: 'Love',
+  1: 'Fifteen',
+  2: 'Thirty',
+  3: 'Forty'
+};
 
 export class TennisGame1 implements TennisGame {
   private player1Score: number = 0;
@@ -47,6 +53,10 @@ export class TennisGame1 implements TennisGame {
     return score;
   }
 
+  private scoreToText(score: number): string {
+    return SCORE_TO_TEXT[score];
+  }
+
   private advantageScore() {
     const difference = this.player1Score - this.player2Score;
     if (difference === 1)
@@ -60,32 +70,10 @@ export class TennisGame1 implements TennisGame {
   }
 
   private drawScore(): string {
-    switch (this.player1Score) {
-      case 0:
-        return 'Love-All';
-      case 1:
-        return 'Fifteen-All';
-      case 2:
-        return 'Thirty-All';
-      default:
-        return 'Deuce';
+    if (this.player1Score < 3) {
+      return `${this.scoreToText(this.player1Score)}-All`;
     }
-  }
-
-  private scoreToText(score: number): string {
-    switch (score) {
-      case 0:
-        return 'Love';
-      case 1:
-        return 'Fifteen';
-      case 2:
-        return 'Thirty';
-      case 3:
-        return 'Forty';
-      default:
-        return '';
-    }
-  }
-  
+    else return 'Deuce';
+  }  
 }
 
