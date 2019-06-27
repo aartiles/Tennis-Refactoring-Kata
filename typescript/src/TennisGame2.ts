@@ -11,9 +11,6 @@ export class TennisGame2 implements TennisGame {
   player1Points: number = 0;
   player2Points: number = 0;
 
-  player1Result: string = '';
-  player2Result: string = '';
-
   private player1Name: string;
   private player2Name: string;
 
@@ -23,7 +20,6 @@ export class TennisGame2 implements TennisGame {
   }
 
   getScore(): string {
-    let score: string = '';
     if (this.isDraw()) {
       return this.drawScore();  
     }
