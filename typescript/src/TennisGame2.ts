@@ -61,12 +61,7 @@ export class TennisGame2 implements TennisGame {
 
   private drawScore() {
     if (this.player1Points < 3) {
-      if (this.player1Points === 0)
-        return 'Love-All';
-      if (this.player1Points === 1)
-        return 'Fifteen-All';
-      if (this.player1Points === 2)
-        return 'Thirty-All';
+      return `${SCORE_TO_TEXT[this.player1Points]}-All`;
     }
     else return 'Deuce';
   }
