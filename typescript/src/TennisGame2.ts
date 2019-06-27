@@ -27,25 +27,25 @@ export class TennisGame2 implements TennisGame {
     if (this.isDraw()) {
       return this.drawScore();  
     }
+    if (this.isAdvantage()) {
+      return this.advantageScore();  
+    }
+    return this.runningScore();
+  }
 
+  private runningScore() {
     if (this.player1Points > 0 && this.player2Points === 0) {
-      score = SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
+      return SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
     }
     if (this.player2Points > 0 && this.player1Points === 0) {
-      score = SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
+      return SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
     }
-
     if (this.player1Points > this.player2Points && this.player1Points < 4) {
-      score = SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
+      return SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
     }
     if (this.player2Points > this.player1Points && this.player2Points < 4) {
-      score = SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
+      return SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
     }
-
-    if (this.isAdvantage()) {
-      score = this.advantageScore();  
-    }
-    return score;
   }
 
   private advantageScore() {
