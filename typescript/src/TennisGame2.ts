@@ -34,18 +34,7 @@ export class TennisGame2 implements TennisGame {
   }
 
   private runningScore() {
-    if (this.player1Points > 0 && this.player2Points === 0) {
-      return SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
-    }
-    if (this.player2Points > 0 && this.player1Points === 0) {
-      return SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
-    }
-    if (this.player1Points > this.player2Points && this.player1Points < 4) {
-      return SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
-    }
-    if (this.player2Points > this.player1Points && this.player2Points < 4) {
-      return SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
-    }
+    return SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
   }
 
   private advantageScore() {
