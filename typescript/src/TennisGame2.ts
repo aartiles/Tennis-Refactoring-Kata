@@ -42,21 +42,29 @@ export class TennisGame2 implements TennisGame {
       score = SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
     }
 
-    if (this.player1Points > this.player2Points && this.player2Points >= 3) {
-      score = 'Advantage player1';
-    }
-
-    if (this.player2Points > this.player1Points && this.player1Points >= 3) {
-      score = 'Advantage player2';
-    }
-
-    if (this.player1Points >= 4 && this.player2Points >= 0 && (this.player1Points - this.player2Points) >= 2) {
-      score = 'Win for player1';
-    }
-    if (this.player2Points >= 4 && this.player1Points >= 0 && (this.player2Points - this.player1Points) >= 2) {
-      score = 'Win for player2';
+    if (this.isAdvantage()) {
+      score = this.advantageScore();  
     }
     return score;
+  }
+
+  private advantageScore() {
+    if ((this.player1Points - this.player2Points) >= 2) {
+      return  'Win for player1';
+    }
+    if ((this.player2Points - this.player1Points) >= 2) {
+      return 'Win for player2';
+    }
+    if (this.player1Points > this.player2Points && this.player2Points >= 3) {
+      return 'Advantage player1';
+    }
+    if (this.player2Points > this.player1Points && this.player1Points >= 3) {
+      return 'Advantage player2';
+    }
+  }
+
+  private isAdvantage() {
+    return this.player1Points >= 4 || this.player2Points >= 4;
   }
 
   private drawScore() {
