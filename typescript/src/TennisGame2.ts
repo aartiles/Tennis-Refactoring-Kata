@@ -18,17 +18,9 @@ export class TennisGame2 implements TennisGame {
 
   getScore(): string {
     let score: string = '';
-    if (this.player1Points === this.player2Points && this.player1Points < 4) {
-      if (this.player1Points === 0)
-        score = 'Love';
-      if (this.player1Points === 1)
-        score = 'Fifteen';
-      if (this.player1Points === 2)
-        score = 'Thirty';
-      score += '-All';
+    if (this.isDraw()) {
+      return this.drawScore();  
     }
-    if (this.player1Points === this.player2Points && this.player1Points >= 3)
-      score = 'Deuce';
 
     if (this.player1Points > 0 && this.player2Points === 0) {
       if (this.player1Points === 1)
@@ -91,6 +83,22 @@ export class TennisGame2 implements TennisGame {
       score = 'Win for player2';
     }
     return score;
+  }
+
+  private drawScore() {
+    if (this.player1Points < 3) {
+      if (this.player1Points === 0)
+        return 'Love-All';
+      if (this.player1Points === 1)
+        return 'Fifteen-All';
+      if (this.player1Points === 2)
+        return 'Thirty-All';
+    }
+    else return 'Deuce';
+  }
+
+  private isDraw() {
+    return this.player1Points === this.player2Points;
   }
 
   P1Score(): void {
