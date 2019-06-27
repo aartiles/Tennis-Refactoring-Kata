@@ -49,18 +49,11 @@ export class TennisGame2 implements TennisGame {
   }
 
   private advantageScore() {
-    if ((this.player1Points - this.player2Points) >= 2) {
-      return  'Win for player1';
-    }
-    if ((this.player2Points - this.player1Points) >= 2) {
-      return 'Win for player2';
-    }
-    if (this.player1Points > this.player2Points && this.player2Points >= 3) {
-      return 'Advantage player1';
-    }
-    if (this.player2Points > this.player1Points && this.player1Points >= 3) {
-      return 'Advantage player2';
-    }
+    const difference = this.player1Points - this.player2Points;
+    if (difference >= 2) return  'Win for player1';
+    if (difference <= -2) return 'Win for player2';
+    if (difference === 1) return 'Advantage player1';
+    if (difference === -1) return 'Advantage player2';
   }
 
   private isAdvantage() {
