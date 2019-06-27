@@ -1,5 +1,11 @@
 import { TennisGame } from './TennisGame';
 
+const SCORE_TO_TEXT = {
+  0: 'Love',
+  1: 'Fifteen',
+  2: 'Thirty',
+  3: 'Forty'
+};
 
 export class TennisGame2 implements TennisGame {
   player1Points: number = 0;
@@ -23,49 +29,17 @@ export class TennisGame2 implements TennisGame {
     }
 
     if (this.player1Points > 0 && this.player2Points === 0) {
-      if (this.player1Points === 1)
-        this.player1Result = 'Fifteen';
-      if (this.player1Points === 2)
-        this.player1Result = 'Thirty';
-      if (this.player1Points === 3)
-        this.player1Result = 'Forty';
-
-      this.player2Result = 'Love';
-      score = this.player1Result + '-' + this.player2Result;
+      score = SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
     }
     if (this.player2Points > 0 && this.player1Points === 0) {
-      if (this.player2Points === 1)
-        this.player2Result = 'Fifteen';
-      if (this.player2Points === 2)
-        this.player2Result = 'Thirty';
-      if (this.player2Points === 3)
-        this.player2Result = 'Forty';
-
-      this.player1Result = 'Love';
-      score = this.player1Result + '-' + this.player2Result;
+      score = SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
     }
 
     if (this.player1Points > this.player2Points && this.player1Points < 4) {
-      if (this.player1Points === 2)
-        this.player1Result = 'Thirty';
-      if (this.player1Points === 3)
-        this.player1Result = 'Forty';
-      if (this.player2Points === 1)
-        this.player2Result = 'Fifteen';
-      if (this.player2Points === 2)
-        this.player2Result = 'Thirty';
-      score = this.player1Result + '-' + this.player2Result;
+      score = SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
     }
     if (this.player2Points > this.player1Points && this.player2Points < 4) {
-      if (this.player2Points === 2)
-        this.player2Result = 'Thirty';
-      if (this.player2Points === 3)
-        this.player2Result = 'Forty';
-      if (this.player1Points === 1)
-        this.player1Result = 'Fifteen';
-      if (this.player1Points === 2)
-        this.player1Result = 'Thirty';
-      score = this.player1Result + '-' + this.player2Result;
+      score = SCORE_TO_TEXT[this.player1Points] + '-' + SCORE_TO_TEXT[this.player2Points];
     }
 
     if (this.player1Points > this.player2Points && this.player2Points >= 3) {
