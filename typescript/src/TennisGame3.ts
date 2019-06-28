@@ -19,6 +19,7 @@ export class TennisGame3 implements TennisGame {
 
   getScore(): string {
     if (this.player1.isDraw(this.player2)) return this.player1.score() + '-All';
+    if (this.player1.isDeuce(this.player2)) return 'Deuce';
 
     let s: string;
 
@@ -26,8 +27,6 @@ export class TennisGame3 implements TennisGame {
       s = this.player1.score();
       return (this.player1.isDraw(this.player2)) ? s + '-All' : s + '-' + this.player2.score();
     } else {
-      if (this.player1.isDeuce(this.player2))
-        return 'Deuce';
       const winingName = this.winnerName();
       const difference = this.player1.difference(this.player2);
       return (Math.abs(difference) === 1) ? 'Advantage ' + winingName : 'Win for ' + winingName;
