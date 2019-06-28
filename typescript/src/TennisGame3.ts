@@ -23,7 +23,7 @@ export class TennisGame3 implements TennisGame {
       s = this.player1.score();
       return (this.player1.isDraw(this.player2)) ? s + '-All' : s + '-' + this.player2.score();
     } else {
-      if (this.p1 === this.p2)
+      if (this.player1.isDeuce(this.player2))
         return 'Deuce';
       s = this.p1 > this.p2 ? this.p1N : this.p2N;
       return (((this.p1 - this.p2) * (this.p1 - this.p2)) === 1) ? 'Advantage ' + s : 'Win for ' + s;
