@@ -14,15 +14,14 @@ export class TennisGame3 implements TennisGame {
     this.p1N = p1N;
     this.p2N = p2N;
     this.player1 = new Player(p1N);
-    this.player2 = new Player(p1N);
+    this.player2 = new Player(p2N);
   }
 
   getScore(): string {
     let s: string;
     if (this.p1 < 4 && this.p2 < 4 && !(this.p1 + this.p2 === 6)) {
-      const p: string[] = ['Love', 'Fifteen', 'Thirty', 'Forty'];
-      s = p[this.p1];
-      return (this.p1 === this.p2) ? s + '-All' : s + '-' + p[this.p2];
+      s = this.player1.score();
+      return (this.p1 === this.p2) ? s + '-All' : s + '-' + this.player2.score();
     } else {
       if (this.p1 === this.p2)
         return 'Deuce';
