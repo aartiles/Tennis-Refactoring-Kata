@@ -2,17 +2,10 @@ import { TennisGame } from './TennisGame';
 import Player from './Player';
 
 export class TennisGame3 implements TennisGame {
-  private p2: number = 0;
-  private p1: number = 0;
-  private p1N: string;
-  private p2N: string;
-
   private player1: Player;
   private player2: Player;
 
   constructor(p1N: string, p2N: string) {
-    this.p1N = p1N;
-    this.p2N = p2N;
     this.player1 = new Player(p1N);
     this.player2 = new Player(p2N);
   }
@@ -35,11 +28,9 @@ export class TennisGame3 implements TennisGame {
   wonPoint(playerName: string): void {
     if (this.player1.is(playerName)) {
       this.player1.wonPoint();
-      this.p1 += 1;
     }
     else {
       this.player2.wonPoint();
-      this.p2 += 1;
     }
   }
 }
