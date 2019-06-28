@@ -5,9 +5,9 @@ export class TennisGame3 implements TennisGame {
   private player1: Player;
   private player2: Player;
 
-  constructor(p1N: string, p2N: string) {
-    this.player1 = new Player(p1N);
-    this.player2 = new Player(p2N);
+  constructor(player1Name: string, player2Name: string) {
+    this.player1 = new Player(player1Name);
+    this.player2 = new Player(player2Name);
   }
 
   getScore(): string {
