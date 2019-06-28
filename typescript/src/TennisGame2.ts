@@ -9,10 +9,10 @@ const SCORE_TO_TEXT = {
 
 class Player {
   private points: number = 0;
-  private name: string;
+  private _name: string;
 
   constructor(name: string) {
-    this.name = name;
+    this._name = name;
   }
 
   wonPoint() {
@@ -21,6 +21,10 @@ class Player {
 
   score(): string {
     return SCORE_TO_TEXT[this.points];
+  }
+
+  name(): string {
+    return this._name;
   }
 
   isDraw(player: Player): boolean {
@@ -32,7 +36,7 @@ class Player {
   }
 
   is(name: string): boolean {
-    return name === this.name;
+    return name === this._name;
   }
 
   difference(player: Player): number {
@@ -60,20 +64,11 @@ export class TennisGame2 implements TennisGame {
     return this.runningScore();
   }
 
-  private runningScore() {
-    return `${this.player1.score()}-${this.player2.score()}`;
-  }
-
-  private advantageScore() {
-    const difference = this.player1.difference(this.player2);
-    if (difference >= 2) return  'Win for player1';
-    if (difference <= -2) return 'Win for player2';
-    if (difference === 1) return 'Advantage player1';
-    if (difference === -1) return 'Advantage player2';
-  }
-
-  private isAdvantage() {
-    return this.player1.isAdvantage() || this.player2.isAdvantage();
+  wonPoint(playerName: string): void {
+    if (this.player1.is(playerName))
+      this.player1.wonPoint();
+    else
+    this.player2.wonPoint();
   }
 
   private drawScore() {
@@ -84,14 +79,20 @@ export class TennisGame2 implements TennisGame {
     return 'Deuce';
   }
 
-  private isDraw() {
-    return this.player1.isDraw(this.player2);
+  private isAdvantage() {    
+    return this.player1.isAdvantage() || this.player2.isAdvantage();
   }
 
-  wonPoint(playerName: string): void {
-    if (this.player1.is(playerName))
-      this.player1.wonPoint();
-    else
-    this.player2.wonPoint();
+  private advantageScore() {
+    const difference = this.player1.difference(this.player2);
+    if (difference >= 2) return  `Win for ${this.player1.name()}`;
+    if (difference <= -2) return `Win for ${this.player2.name()}`;
+    if (difference === 1) return `Advantage ${this.player1.name()}`;
+    if (difference === -1) return `Advantage ${this.player2.name()}`;
   }
+
+  private runningScore() {
+    return `${this.player1.score()}-${this.player2.score()}`;
+  }
+
 }
