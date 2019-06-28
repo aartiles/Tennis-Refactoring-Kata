@@ -25,9 +25,7 @@ export class TennisGame3 implements TennisGame {
       const difference = this.player1.difference(this.player2);
       return (Math.abs(difference) === 1) ? 'Advantage ' + winingName : 'Win for ' + winingName;
     }
-    if (this.p1 < 4 && this.p2 < 4 && !(this.p1 + this.p2 === 6)) {
-      return this.player1.score() + '-' + this.player2.score();
-    }
+    return this.player1.score() + '-' + this.player2.score();
   }
 
   private winnerName(): string {
