@@ -18,7 +18,10 @@ export class TennisGame3 implements TennisGame {
   }
 
   getScore(): string {
+    if (this.player1.isDraw(this.player2)) return this.player1.score() + '-All';
+
     let s: string;
+
     if (this.p1 < 4 && this.p2 < 4 && !(this.p1 + this.p2 === 6)) {
       s = this.player1.score();
       return (this.player1.isDraw(this.player2)) ? s + '-All' : s + '-' + this.player2.score();
