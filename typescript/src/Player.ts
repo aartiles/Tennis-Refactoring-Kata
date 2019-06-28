@@ -5,7 +5,7 @@ const SCORE_TO_TEXT = {
   3: 'Forty'
 };
 
-export class Player {
+export default class Player {
   private points: number = 0;
   private _name: string;
   constructor(name: string) {

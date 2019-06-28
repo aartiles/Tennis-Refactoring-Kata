@@ -1,5 +1,5 @@
 import { TennisGame } from './TennisGame';
-import { Player } from './Player';
+import Player from './Player';
 
 export class TennisGame2 implements TennisGame {
   private player1: Player;
