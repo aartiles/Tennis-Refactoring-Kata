@@ -35,4 +35,7 @@ export default class Player {
   isAdvantage(): boolean {
     return this.points >= 4;
   }
+  isWinningTo(player: Player): boolean {
+    return this.points > player.points;
+  }
 }

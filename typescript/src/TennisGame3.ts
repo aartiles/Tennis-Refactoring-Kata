@@ -25,9 +25,13 @@ export class TennisGame3 implements TennisGame {
     } else {
       if (this.player1.isDeuce(this.player2))
         return 'Deuce';
-      s = this.p1 > this.p2 ? this.p1N : this.p2N;
+      s = this.winnerName();
       return (((this.p1 - this.p2) * (this.p1 - this.p2)) === 1) ? 'Advantage ' + s : 'Win for ' + s;
     }
+  }
+
+  private winnerName(): string {
+    return this.player1.isWinningTo(this.player2) ? this.player1.name() : this.player2.name();
   }
 
   wonPoint(playerName: string): void {
